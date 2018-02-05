@@ -3,8 +3,11 @@ app.controller('empresaController', function ($scope, $route, loaddatosSRI) {
 	$scope.$route = $route;
 
 	jQuery(function($) {
+		// toggle
 		$('[data-toggle="tooltip"]').tooltip();
+		// fin
 
+		// tabEmpresa
 		$( "#tabEmpresa" ).click(function(event) {
 			event.preventDefault();  
 		});	
@@ -13,7 +16,8 @@ app.controller('empresaController', function ($scope, $route, loaddatosSRI) {
 				var $this = $(this);
 				$this.next().css({'width': $this.parent().width()});
 			})	
-		});		
+		});
+		// fin		
 
 		if(!ace.vars['touch']) {			
 			$('.chosen-select').chosen({allow_single_deselect:true}); 

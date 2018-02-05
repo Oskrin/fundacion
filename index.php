@@ -60,10 +60,14 @@
   		<script src="data/tipo_comprobante/app.js"></script>
   		<script src="data/tipo_documento/app.js"></script>
   		<script src="data/tipo_producto/app.js"></script>
+  		<script src="data/tipo_impuesto/app.js"></script>
+  		<script src="data/tipo_retencion/app.js"></script>
+  		<script src="data/tarifa_impuesto/app.js"></script>
+  		<script src="data/tarifa_retencion/app.js"></script>
   		<script src="data/formas_pago/app.js"></script>
   		<script src="data/porcentaje/app.js"></script>
-  		<script src="data/retencion_fuente/app.js"></script>
-  		<script src="data/retencion_iva/app.js"></script>
+  		<script src="data/cargar_xml/app.js"></script>
+  		<script src="data/validar_comprobantes/app.js"></script>
   		<script src="data/clientes/app.js"></script>
   		<script src="data/usuarios/app.js"></script>
   		<script src="data/cuenta/app.js"></script>
@@ -116,7 +120,7 @@
 				<div class="navbar-header pull-left">
 					<a href="#" class="navbar-brand">
 						<small>
-							SISTEMA FACTURACIÓN
+							FACTURACIÓN ELECTRÓNICA
 						</small>
 					</a>
 				</div>
@@ -205,10 +209,12 @@
 												$route.current.activetab == 'tipo_comprobante' ||
 												$route.current.activetab == 'tipo_documento' ||
 												$route.current.activetab == 'tipo_producto' ||
+												$route.current.activetab == 'tipo_impuesto' ||
+												$route.current.activetab == 'tipo_retencion' ||
+												$route.current.activetab == 'tarifa_impuesto' ||
+												$route.current.activetab == 'tarifa_retencion' ||
 												$route.current.activetab == 'formas_pago' ||
-												$route.current.activetab == 'porcentaje' ||
-												$route.current.activetab == 'retencion_iva' ||
-												$route.current.activetab == 'retencion_fuente' 
+												$route.current.activetab == 'porcentaje' 
 												
 									}">
 						<a href="" class="dropdown-toggle">
@@ -265,6 +271,42 @@
 								<b class="arrow"></b>
 							</li>
 
+							<li ng-class="{active: $route.current.activetab == 'tipo_impuesto'}">
+								<a href="#/tipo_impuesto">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Tipo Impuesto
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'tipo_retencion'}">
+								<a href="#/tipo_retencion">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Tipo Retención
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'tarifa_impuesto'}">
+								<a href="#/tarifa_impuesto">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Tarifa Impuesto
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li ng-class="{active: $route.current.activetab == 'tarifa_retencion'}">
+								<a href="#/tarifa_retencion">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Tarifa Retención
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
 							<li ng-class="{active: $route.current.activetab == 'formas_pago'}">
 								<a href="#/formas_pago">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -282,36 +324,19 @@
 
 								<b class="arrow"></b>
 							</li>
-
-							<li ng-class="{active: $route.current.activetab == 'retencion_fuente'}">
-								<a href="#/retencion_fuente">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Retención Fuente
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li ng-class="{active: $route.current.activetab == 'retencion_iva'}">
-								<a href="#/retencion_iva">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Retención IVA
-								</a>
-
-								<b class="arrow"></b>
-							</li>
 						</ul>
 					</li>
 
 
 
 					<li ng-class = "{'active open': 
-												$route.current.activetab == 'xml'
+												$route.current.activetab == 'validar_comprobantes' ||
+												$route.current.activetab == 'cargar_xml'
 									}">
 						<a href="" class="dropdown-toggle">
 							<i class="menu-icon fa fa-shopping-cart"></i>
 							<span class="menu-text">
-								Envio Facturas
+								Facturación
 							</span>
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
@@ -319,10 +344,20 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li ng-class="{active: $route.current.activetab == 'xml'}">
-								<a href="#/xml">
+							<li ng-class="{active: $route.current.activetab == 'cargar_xml'}">
+								<a href="#/cargar_xml">
 									<i class="menu-icon fa fa-caret-right"></i>
-									XML
+									Cargar XML
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
+
+						<ul class="submenu">
+							<li ng-class="{active: $route.current.activetab == 'validar_comprobantes'}">
+								<a href="#/validar_comprobantes">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Validad Comprobantes
 								</a>
 								<b class="arrow"></b>
 							</li>
@@ -385,7 +420,7 @@
 				<div class="footer-inner">
 					<div class="footer-content">
 						<span class="bigger-120">
-							Applicación &copy; 2016-2017
+							Applicación &copy; 2017-2018
 						</span>
 					</div>
 				</div>

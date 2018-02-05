@@ -8,7 +8,7 @@ app.controller('tipo_ambienteController', function ($scope, $route) {
 
 	    //cambiar el tamaño para ajustarse al tamaño de la página
 	    $(window).on('resize.jqGrid', function() {
-	        $(grid_selector).jqGrid('setGridWidth', $(".page-content").width());
+	        $(grid_selector).jqGrid('setGridWidth', $(".widget-main").width());
 	    });
 	    //cambiar el tamaño de la barra lateral collapse/expand
 	    var parent_column = $(grid_selector).closest('[class*="col-"]');

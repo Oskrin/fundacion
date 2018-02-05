@@ -1,0 +1,62 @@
+<div class="loading2" id="loading2">&#8230;</div>
+<div class="main-content-inner">
+	<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="#/">Inicio</a>
+			</li>
+			<li class="active">Facturación</li>			
+			<li class="active">Validar Comprobantes</li>
+		</ul>
+	</div>
+
+	<div class="page-content">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="widget-box">
+					<div class="widget-body">
+						<div class="widget-main">
+							&nbsp;
+							<div class="row">
+                            	<div class="col-sm-3">
+	                                <div class="form-group">                                     
+	                                    <select id="select_Estados" name="select_Estados" tabindex="1" class="select2" data-placeholder="Estado de Comprobantes"> 
+	                                        <option value="0" selected="">TODOS</option>
+	                                        <option value="1">AUTORIZADO</option>
+	                                        <option value="2">ERROR AL GENERAR DOCUMENTOS</option>
+	                                        <option value="3">AUTORIZADO CORREO NO ENVIADO</option>
+	                                        <option value="7">RECHAZADO</option>
+	                                        <option value="8">SIN FIRMAR ERROR EN EL WEB SERVICE</option>
+	                                        <option value="9">SIN FIRMAR SOLO GENERADO</option>
+	                                    </select>	                                                                      
+	                                </div>  
+                            	</div>
+                            	
+                            	<div class="col-sm-2">
+	                                <div class="form-group">                                                    
+	                                    <div class="col-sm-12">	                                       
+                                            <div class="input-group col-md-12">
+                                                 <button type="button" id="btn_buscar" class="btn btn-sm btn-primary col-sm-12">
+                                                   Buscar Comprobantes
+                                                    <i class="ace-icon fa fa-floppy-o icon-on-right bigger-110"></i>
+                                                </button>     
+                                            </div>	                                        
+	                                    </div>
+	                                </div>
+	                            </div>
+                            </div>
+
+                            <div class="row">
+	                            <div class="col-sm-12">
+	                                <table id="grid-table"></table>
+	                                <div id="grid-pager"></div>
+	                            </div>
+                        	</div>   
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

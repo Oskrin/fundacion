@@ -13,7 +13,7 @@
         $sidx = 1;
     
     $count = 0;
-    $resultado = $class->consulta("SELECT  COUNT(*) AS count FROM retencion_iva WHERE estado = '1'");         
+    $resultado = $class->consulta("SELECT  COUNT(*) AS count FROM tarifa_impuesto WHERE estado = '1'");         
     while ($row = $class->fetch_array($resultado)) {
         $count = $count + $row[0];    
     }    
@@ -29,20 +29,20 @@
         $start = 0;
     
     if ($search == 'false') {
-        $SQL = "SELECT * FROM retencion_iva WHERE estado = '1' ORDER BY $sidx $sord offset $start limit $limit";
+        $SQL = "SELECT I.id, T.nombre_tipo_impuesto, I.codigo, I.nombre_tarifa_impuesto, I.descripcion, I.fecha_creacion FROM tarifa_impuesto I, tipo_impuesto T WHERE I.id_tipo_impuesto = T.id AND I.estado = '1' ORDER BY $sidx $sord offset $start limit $limit";
     } else {
         $campo = $_GET['searchField'];
       
         if ($_GET['searchOper'] == 'eq') {
-            $SQL = "SELECT * FROM retencion_iva WHERE estado = '1' AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
+            $SQL = "SELECT I.id, T.nombre_tipo_impuesto, I.codigo, I.nombre_tarifa_impuesto, I.descripcion, I.fecha_creacion FROM tarifa_impuesto I, tipo_impuesto T WHERE I.id_tipo_impuesto = T.id AND I.estado = '1' AND $campo = '$_GET[searchString]' ORDER BY $sidx $sord offset $start limit $limit";
         }         
         if ($_GET['searchOper'] == 'cn') {
-            $SQL = "SELECT * FROM retencion_iva WHERE estado = '1' AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
+            $SQL = "SELECT I.id, T.nombre_tipo_impuesto, I.codigo, I.nombre_tarifa_impuesto, I.descripcion, I.fecha_creacion FROM tarifa_impuesto I, tipo_impuesto T WHERE I.id_tipo_impuesto = T.id AND I.estado = '1' AND $campo like '%$_GET[searchString]%' ORDER BY $sidx $sord offset $start limit $limit";
         }
     }  
 
-    $resultado = $class->consulta($SQL);  
-    
+    $resultado = $class->consulta($SQL);
+
     header("Content-Type: text/html;charset=utf-8");   
     $s = "<?xml version='1.0' encoding='utf-8'?>";
     $s .= "<rows>";
@@ -57,10 +57,9 @@
         $s .= "<cell>" . $row[3] . "</cell>";
         $s .= "<cell>" . $row[4] . "</cell>";
         $s .= "<cell>" . $row[5] . "</cell>";
-        $s .= "<cell>" . $row[7] . "</cell>";
         $s .= "</row>";
     }
-        
+    
     $s .= "</rows>";
     echo $s;    
 ?>

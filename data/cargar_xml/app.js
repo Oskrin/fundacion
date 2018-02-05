@@ -1,8 +1,23 @@
-app.controller('tipo_emisionController', function ($scope, $route) {
+app.controller('cargar_xmlController', function ($scope, $route) {
 
 	$scope.$route = $route;
 	
 	jQuery(function($) {
+		// stulo file
+		$('#file_1').ace_file_input({
+			no_file:'Selecione un archivo ...',
+			btn_choose:'Selecionar',
+			btn_change:'Cambiar',
+			droppable:false,
+			onchange:null,
+			thumbnail:false
+		});
+		// fin
+
+		// estilos file
+		$("#file_1").ace_file_input('reset_input');
+		// fin
+
 		var grid_selector = "#grid-table";
 	    var pager_selector = "#grid-pager";
 
@@ -23,15 +38,16 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 
 	    jQuery(grid_selector).jqGrid({
 	    	datatype: "xml",
-	        url: 'data/tipo_emision/xml_tipo_emision.php',
-			colNames:['ID','CÓDIGO','TIPO EMISIÓN','PRINCIPAL','OBSERVACIONES','FECHA CREACIÓN'],
+	        // url: 'data/cargar_xml/xml_fact.php',
+			colNames:['ID','DOCUMENTO','FECHA EMISIÓN','CLAVE ACCESO','NÚMERO AUTORIZACIÓN','FECHA AUTORIZACIÓN','ACCIONES'],
 			colModel:[
-				{name:'id',index:'id', frozen:true,align:'left',search:false,editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
-				{name:'codigo',index:'codigo',width:50, editable:true, editoptions:{size:"20", maxlength:"30"}, editrules: {required: true}},
-				{name:'nombre_tipo_emision',index:'nombre_tipo_emision',width:250, editable:true, editoptions:{size:"20", maxlength:""}, editrules: {required: true}},
-				{name:'principal',index:'principal', width:60, editable: true, search:false, edittype:"checkbox",editoptions: {value:"Si:No"}},
-	            {name:'observaciones', index:'observaciones', frozen: true, editable:true, search:false, edittype:"textarea", editrules: {required: false}, width: 300},
-	            {name:'fecha_creacion',index:'fecha_creacion', width:150,editable: true, search:false, editoptions:{size:"20", maxlength:"30", readonly: 'readonly'}}
+	            {name:'id',index:'id', width:60, sorttype:"int", editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
+				{name:'documento',index:'documento',width:150, editable:true, editoptions:{size:"20", maxlength:"30"}, editrules: {required: true}},
+				{name:'fecha_emision',index:'fecha_emision',width:150, editable:true, editoptions:{size:"20", maxlength:""}, editrules: {required: true}},
+				{name:'clave_aceso',index:'clave_aceso',width:250, editable:true, editoptions:{size:"20", maxlength:""}, editrules: {required: true}},
+				{name:'numero_autorizacion',index:'numero_autorizacion',width:250, editable:true, editoptions:{size:"20", maxlength:""}, editrules: {required: true}},
+	            {name:'fecha_autorizacion',index:'fecha_autorizacion', width:150,editable: true, search:false, editoptions:{size:"20", maxlength:"30", readonly: 'readonly'}},
+	            {name:'acciones',index:'acciones', width:150,editable: true, search:false, editoptions:{size:"20", maxlength:"30", readonly: 'readonly'}}
 			],
 	        rowNum: 10,
 	        rowList: [10,20,30],
@@ -54,8 +70,8 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 	                enableTooltips(table);
 	            }, 0);
 	        },
-	        editurl: "data/tipo_emision/app.php",
-	        caption: "LISTA TIPO DE EMISIÓN"
+	        editurl: "data/cargar_xml/app.php",
+	        caption: "LISTA XML CARGADOS"
 	    });
 	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
@@ -75,16 +91,16 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 	    }
 	    //navButtons
 	    jQuery(grid_selector).jqGrid('navGrid', pager_selector, {   //navbar options
-	        add: true,
+	        add: false,
 	        addicon: 'ace-icon fa fa-plus-circle purple',
 	        addtext: 'Añadir',
-	        edit: true,
+	        edit: false,
 	        editicon: 'ace-icon fa fa-pencil blue',
 	        edittext: 'Editar',
-	        del: true,
+	        del: false,
 	        delicon: 'ace-icon fa fa-trash-o red',
 	        deltext: 'Borrar',
-	        search: true,
+	        search: false,
 	        searchicon: 'ace-icon fa fa-search orange',
 	        refresh: true,
 	        refreshicon: 'ace-icon fa fa-refresh green',
@@ -112,8 +128,8 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 					});
                 } else {
                 	if(retorno == '3') {
-                		$("#nombre_tipo_emision").val("");
-	                	return [false,"Error.. El Tipo de Emisión ya fue Agregado"];
+                		$("#codigo").val("");
+	                	return [false,"Error.. La tarifa Retención ya fue Agregada"];
 	                }
                 }
                 return [true,'',retorno];
@@ -141,8 +157,8 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 					});
                 } else {
                 	if(retorno == '3') {
-                		$("#nombre_tipo_emision").val("");
-	                	return [false,"Error.. El Tipo de Emisión ya fue Agregado"];
+                		$("#codigo").val("");
+	                	return [false,"Error.. La tarifa Retención ya fue Agregada"];
 	                }
                 }
                 return [true,'',retorno];

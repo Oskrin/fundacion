@@ -1,4 +1,4 @@
-app.controller('tipo_emisionController', function ($scope, $route) {
+app.controller('tarifa_retencionController', function ($scope, $route) {
 
 	$scope.$route = $route;
 	
@@ -23,14 +23,21 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 
 	    jQuery(grid_selector).jqGrid({
 	    	datatype: "xml",
-	        url: 'data/tipo_emision/xml_tipo_emision.php',
-			colNames:['ID','CÓDIGO','TIPO EMISIÓN','PRINCIPAL','OBSERVACIONES','FECHA CREACIÓN'],
+	        url: 'data/tarifa_retencion/xml_tarifa_retencion.php',
+			colNames:['ID','TIPO IMPUESTO','CÓDIGO','TARIFA IMPUESTO','DESCRIPCIÓN','FECHA CREACIÓN'],
 			colModel:[
-				{name:'id',index:'id', frozen:true,align:'left',search:false,editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
+	            {name:'id',index:'id', width:60, sorttype:"int", editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
+	            {name:'tipo_impuesto',index:'tipo_impuesto', width:200, hidden:false, editable: true, editrules:{edithidden:true},edittype:"select",
+					editoptions: {
+						dataUrl:'data/tarifa_retencion/cargar_tipo_retencion.php',
+						dataInit: function(elem) {
+					        $(elem).width(170);
+					    }
+					} 
+				},
 				{name:'codigo',index:'codigo',width:50, editable:true, editoptions:{size:"20", maxlength:"30"}, editrules: {required: true}},
-				{name:'nombre_tipo_emision',index:'nombre_tipo_emision',width:250, editable:true, editoptions:{size:"20", maxlength:""}, editrules: {required: true}},
-				{name:'principal',index:'principal', width:60, editable: true, search:false, edittype:"checkbox",editoptions: {value:"Si:No"}},
-	            {name:'observaciones', index:'observaciones', frozen: true, editable:true, search:false, edittype:"textarea", editrules: {required: false}, width: 300},
+				{name:'nombre_tarifa_retencion',index:'nombre_tarifa_retencion',width:250, editable:true, editoptions:{size:"20", maxlength:""}, editrules: {required: true}},
+				{name:'descripcion', index:'descripcion', frozen: true, editable:true, search:false, edittype:"textarea", editrules: {required: false}, width: 300},
 	            {name:'fecha_creacion',index:'fecha_creacion', width:150,editable: true, search:false, editoptions:{size:"20", maxlength:"30", readonly: 'readonly'}}
 			],
 	        rowNum: 10,
@@ -54,8 +61,8 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 	                enableTooltips(table);
 	            }, 0);
 	        },
-	        editurl: "data/tipo_emision/app.php",
-	        caption: "LISTA TIPO DE EMISIÓN"
+	        editurl: "data/tarifa_retencion/app.php",
+	        caption: "LISTA TARIFA RETENCIÓN"
 	    });
 	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
@@ -112,8 +119,8 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 					});
                 } else {
                 	if(retorno == '3') {
-                		$("#nombre_tipo_emision").val("");
-	                	return [false,"Error.. El Tipo de Emisión ya fue Agregado"];
+                		$("#codigo").val("");
+	                	return [false,"Error.. La tarifa Retención ya fue Agregada"];
 	                }
                 }
                 return [true,'',retorno];
@@ -141,8 +148,8 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 					});
                 } else {
                 	if(retorno == '3') {
-                		$("#nombre_tipo_emision").val("");
-	                	return [false,"Error.. El Tipo de Emisión ya fue Agregado"];
+                		$("#codigo").val("");
+	                	return [false,"Error.. La tarifa Retención ya fue Agregada"];
 	                }
                 }
                 return [true,'',retorno];

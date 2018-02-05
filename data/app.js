@@ -98,6 +98,30 @@ app.config(function($routeProvider) {
             controller  : 'tipo_documentoController',
             activetab: 'tipo_documento'
         })
+        // route tipo impuesto
+        .when('/tipo_impuesto', {
+            templateUrl : 'data/tipo_impuesto/index.html',
+            controller  : 'tipo_impuestoController',
+            activetab: 'tipo_impuesto'
+        })
+        // route tipo retencion
+        .when('/tipo_retencion', {
+            templateUrl : 'data/tipo_retencion/index.html',
+            controller  : 'tipo_retencionController',
+            activetab: 'tipo_retencion'
+        })
+        // route tarifa impuesto
+        .when('/tarifa_impuesto', {
+            templateUrl : 'data/tarifa_impuesto/index.html',
+            controller  : 'tarifa_impuestoController',
+            activetab: 'tarifa_impuesto'
+        })
+        // route tarifa retencion
+        .when('/tarifa_retencion', {
+            templateUrl : 'data/tarifa_retencion/index.html',
+            controller  : 'tarifa_retencionController',
+            activetab: 'tarifa_retencion'
+        })
         // route formas pago
         .when('/formas_pago', {
             templateUrl : 'data/formas_pago/index.html',
@@ -110,18 +134,6 @@ app.config(function($routeProvider) {
             controller  : 'porcentajeController',
             activetab: 'porcentaje'
         })
-        // route retencion fuente
-        .when('/retencion_fuente', {
-            templateUrl : 'data/retencion_fuente/index.html',
-            controller  : 'retencion_fuenteController',
-            activetab: 'retencion_fuente'
-        })
-        // route retencion iva
-        .when('/retencion_iva', {
-            templateUrl : 'data/retencion_iva/index.html',
-            controller  : 'retencion_ivaController',
-            activetab: 'retencion_iva'
-        })
         // route tipo producto
         .when('/tipo_producto', {
             templateUrl : 'data/tipo_producto/index.html',
@@ -133,6 +145,18 @@ app.config(function($routeProvider) {
             templateUrl : 'data/clientes/index.html',
             controller  : 'clientesController',
             activetab: 'clientes'
+        })
+        // route validar comprobantes
+        .when('/validar_comprobantes', {
+            templateUrl : 'data/validar_comprobantes/index.html',
+            controller  : 'validar_comprobantesController',
+            activetab: 'validar_comprobantes'
+        })
+        // route cargar xml
+        .when('/cargar_xml', {
+            templateUrl : 'data/cargar_xml/index.html',
+            controller  : 'cargar_xmlController',
+            activetab: 'cargar_xml'
         })
         // route login
         .when('/login', {

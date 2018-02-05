@@ -1,4 +1,4 @@
-app.controller('tipo_emisionController', function ($scope, $route) {
+app.controller('tipo_retencionController', function ($scope, $route) {
 
 	$scope.$route = $route;
 	
@@ -23,12 +23,12 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 
 	    jQuery(grid_selector).jqGrid({
 	    	datatype: "xml",
-	        url: 'data/tipo_emision/xml_tipo_emision.php',
-			colNames:['ID','CÓDIGO','TIPO EMISIÓN','PRINCIPAL','OBSERVACIONES','FECHA CREACIÓN'],
+	        url: 'data/tipo_retencion/xml_tipo_retencion.php',
+			colNames:['ID','CÓDIGO','TIPO RETENCIÓN','PRINCIPAL','OBSERVACIONES','FECHA CREACIÓN'],
 			colModel:[
 				{name:'id',index:'id', frozen:true,align:'left',search:false,editable: true, hidden: true, editoptions: {readonly: 'readonly'}},
 				{name:'codigo',index:'codigo',width:50, editable:true, editoptions:{size:"20", maxlength:"30"}, editrules: {required: true}},
-				{name:'nombre_tipo_emision',index:'nombre_tipo_emision',width:250, editable:true, editoptions:{size:"20", maxlength:""}, editrules: {required: true}},
+				{name:'nombre_tipo_retencion',index:'nombre_tipo_retencion',width:250, editable:true, editoptions:{size:"20", maxlength:""}, editrules: {required: true}},
 				{name:'principal',index:'principal', width:60, editable: true, search:false, edittype:"checkbox",editoptions: {value:"Si:No"}},
 	            {name:'observaciones', index:'observaciones', frozen: true, editable:true, search:false, edittype:"textarea", editrules: {required: false}, width: 300},
 	            {name:'fecha_creacion',index:'fecha_creacion', width:150,editable: true, search:false, editoptions:{size:"20", maxlength:"30", readonly: 'readonly'}}
@@ -54,8 +54,8 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 	                enableTooltips(table);
 	            }, 0);
 	        },
-	        editurl: "data/tipo_emision/app.php",
-	        caption: "LISTA TIPO DE EMISIÓN"
+	        editurl: "data/tipo_retencion/app.php",
+	        caption: "LISTA TIPO RETENCIÓN"
 	    });
 	    $(window).triggerHandler('resize.jqGrid');//cambiar el tamaño para hacer la rejilla conseguir el tamaño correcto
 
@@ -112,8 +112,8 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 					});
                 } else {
                 	if(retorno == '3') {
-                		$("#nombre_tipo_emision").val("");
-	                	return [false,"Error.. El Tipo de Emisión ya fue Agregado"];
+                		$("#nombre_tipo_retencion").val("");
+	                	return [false,"Error.. El Tipo de Retención ya fue Agregado"];
 	                }
                 }
                 return [true,'',retorno];
@@ -141,8 +141,8 @@ app.controller('tipo_emisionController', function ($scope, $route) {
 					});
                 } else {
                 	if(retorno == '3') {
-                		$("#nombre_tipo_emision").val("");
-	                	return [false,"Error.. El Tipo de Emisión ya fue Agregado"];
+                		$("#nombre_tipo_retencion").val("");
+	                	return [false,"Error.. El Tipo de Retención ya fue Agregado"];
 	                }
                 }
                 return [true,'',retorno];
